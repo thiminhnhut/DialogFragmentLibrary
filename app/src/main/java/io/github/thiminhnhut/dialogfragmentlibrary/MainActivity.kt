@@ -1,5 +1,6 @@
 package io.github.thiminhnhut.dialogfragmentlibrary
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,31 +20,35 @@ class MainActivity : AppCompatActivity() {
 
         myDialogFragment =
             MyDialogFragment.newInstance(object : MyDialogFragment.MyDialogFragmentListener {
-                override fun onConfirm() {
+                override fun onConfirm(dialog: Dialog) {
                     Toast.makeText(applicationContext, "On Click OK", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
 
-                override fun onCancel() {
+                override fun onCancel(dialog: Dialog) {
                     Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
 
             }, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))
 
         customDialogFragment =
             CustomDialogFragment.newInstance(object : CustomDialogFragment.MyDialogFragmentListener {
-                override fun onConfirm(view: View) {
+                override fun onConfirm(dialog: Dialog, view: View) {
                     val edtName = view.findViewById<EditText>(R.id.edtName)
                     Toast.makeText(applicationContext, "${edtName.text}", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
 
-                override fun onCancel(view: View) {
+                override fun onCancel(dialog: Dialog, view: View) {
                     Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
             }, R.layout.custom_dialog, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))
 
         btnShow.setOnClickListener {
-            myDialogFragment.show(supportFragmentManager, null)
-//            customDialogFragment.show(supportFragmentManager, null)
+//            myDialogFragment.show(supportFragmentManager, null)
+            customDialogFragment.show(supportFragmentManager, null)
         }
     }
 }

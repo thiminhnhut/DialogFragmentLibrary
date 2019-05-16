@@ -9,8 +9,8 @@ import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
 class MyDialogFragment : DialogFragment() {
 
     interface MyDialogFragmentListener {
-        fun onConfirm()
-        fun onCancel()
+        fun onConfirm(dialog: Dialog)
+        fun onCancel(dialog: Dialog)
     }
 
     private lateinit var listener: MyDialogFragmentListener
@@ -47,17 +47,21 @@ class MyDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(activity!!)
         builder.setTitle(dialogModel.title)
             .setMessage(dialogModel.title)
-            .setPositiveButton(dialogModel.confirm) { _, _ ->
-                listener.onConfirm()
-            }
+            .setPositiveButton(dialogModel.confirm, null)
         if (dialogModel.cancel != null) {
-            builder.setNegativeButton(dialogModel.cancel) { _, _ ->
-                listener.onCancel()
-            }
+            builder.setNegativeButton(dialogModel.cancel, null)
         }
 
-        val dialog = builder.create()
+        val dialog = builder.show()
         dialog.setCanceledOnTouchOutside(dialogModel.canceledOnTouchOutside)
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            listener.onConfirm(dialog)
+        }
+
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener {
+            listener.onCancel(dialog)
+        }
 
         return dialog
     }
