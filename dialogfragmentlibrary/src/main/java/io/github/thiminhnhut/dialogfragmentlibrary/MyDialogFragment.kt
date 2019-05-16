@@ -46,7 +46,7 @@ class MyDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity!!)
         builder.setTitle(dialogModel.title)
-            .setMessage(dialogModel.title)
+            .setMessage(dialogModel.message)
             .setPositiveButton(dialogModel.confirm, null)
         if (dialogModel.cancel != null) {
             builder.setNegativeButton(dialogModel.cancel, null)
