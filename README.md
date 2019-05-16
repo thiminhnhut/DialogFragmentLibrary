@@ -6,6 +6,14 @@
 
 * **Source:** <https://github.com/thiminhnhut/DialogFragmentLibrary>
 
+## Nguồn tham khảo
+
+* <https://codinginflow.com/tutorials/android/simple-alertdialog>
+
+* <https://codinginflow.com/tutorials/android/alertdialog-interface>
+
+* <https://codinginflow.com/tutorials/android/custom-dialog-interface>
+
 ## Nội dung
 
 ### Thêm thư viện vào project
