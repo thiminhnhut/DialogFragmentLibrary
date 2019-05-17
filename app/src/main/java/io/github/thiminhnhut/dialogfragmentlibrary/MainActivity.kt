@@ -7,12 +7,14 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
+import io.github.thiminhnhut.dialogfragmentlibrary.model.LoadingAnimationModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var myDialogFragment: MyDialogFragment
     private lateinit var customDialogFragment: CustomDialogFragment
+    private lateinit var loadingAnimation: LoadingAnimation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +48,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }, R.layout.custom_dialog, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))
 
+
+        loadingAnimation = LoadingAnimation.newInstance()
+
         btnShow.setOnClickListener {
 //            myDialogFragment.show(supportFragmentManager, null)
-            customDialogFragment.show(supportFragmentManager, null)
+//            customDialogFragment.show(supportFragmentManager, null)
+            loadingAnimation.show(supportFragmentManager, null)
         }
     }
 }

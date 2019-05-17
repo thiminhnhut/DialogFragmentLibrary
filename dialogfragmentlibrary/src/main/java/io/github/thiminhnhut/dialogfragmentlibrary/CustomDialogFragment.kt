@@ -28,7 +28,11 @@ class CustomDialogFragment : DialogFragment() {
             return myDialogFragmentConfirm
         }
 
-        fun newInstance(listener: MyDialogFragmentListener, resId: Int, dialogModel: DialogModel): CustomDialogFragment {
+        fun newInstance(
+            listener: MyDialogFragmentListener,
+            resId: Int,
+            dialogModel: DialogModel
+        ): CustomDialogFragment {
             this.dialogModel = dialogModel
             this.resId = resId
             val myDialogFragmentConfirm = CustomDialogFragment()
@@ -41,22 +45,15 @@ class CustomDialogFragment : DialogFragment() {
         dialogModel = model
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (dialog != null) {
-            dialog!!.setCanceledOnTouchOutside(false)
-        }
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = activity!!.layoutInflater.inflate(resId, null)
         val builder = AlertDialog.Builder(activity!!)
         builder.setView(view)
             .setTitle(dialogModel.title)
             .setPositiveButton(dialogModel.confirm, null)
-            if (dialogModel.cancel != null) {
-                builder.setNegativeButton(dialogModel.cancel, null)
-            }
+        if (dialogModel.cancel != null) {
+            builder.setNegativeButton(dialogModel.cancel, null)
+        }
 
         val dialog = builder.show()
         dialog.setCanceledOnTouchOutside(dialogModel.canceledOnTouchOutside)

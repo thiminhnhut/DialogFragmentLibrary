@@ -36,13 +36,6 @@ class MyDialogFragment : DialogFragment() {
         dialogModel = model
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (dialog != null) {
-            dialog!!.setCanceledOnTouchOutside(false)
-        }
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity!!)
         builder.setTitle(dialogModel.title)
