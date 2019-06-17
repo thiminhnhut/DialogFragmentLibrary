@@ -1,13 +1,12 @@
 package io.github.thiminhnhut.dialogfragmentlibrary
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
-import io.github.thiminhnhut.dialogfragmentlibrary.model.LoadingAnimationModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,11 +22,13 @@ class MainActivity : AppCompatActivity() {
         myDialogFragment =
             MyDialogFragment.newInstance(object : MyDialogFragment.MyDialogFragmentListener {
                 override fun onConfirm(dialog: Dialog) {
+                    super.onConfirm(dialog)
                     Toast.makeText(applicationContext, "On Click OK", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
 
                 override fun onCancel(dialog: Dialog) {
+                    super.onCancel(dialog)
                     Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
@@ -52,9 +53,9 @@ class MainActivity : AppCompatActivity() {
         loadingAnimation = LoadingAnimation.newInstance()
 
         btnShow.setOnClickListener {
-//            myDialogFragment.show(supportFragmentManager, null)
+                        myDialogFragment.show(supportFragmentManager, null)
 //            customDialogFragment.show(supportFragmentManager, null)
-            loadingAnimation.show(supportFragmentManager, null)
+//            loadingAnimation.show(supportFragmentManager, null)
         }
     }
 }

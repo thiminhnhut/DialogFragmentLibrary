@@ -9,8 +9,8 @@ import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
 class MyDialogFragment : DialogFragment() {
 
     interface MyDialogFragmentListener {
-        fun onConfirm(dialog: Dialog)
-        fun onCancel(dialog: Dialog)
+        fun onConfirm(dialog: Dialog) = Unit
+        fun onCancel(dialog: Dialog) = Unit
     }
 
     private lateinit var listener: MyDialogFragmentListener
