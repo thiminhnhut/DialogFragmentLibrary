@@ -21,16 +21,14 @@ class MainActivity : AppCompatActivity() {
 
         myDialogFragment =
             MyDialogFragment.newInstance(object : MyDialogFragment.MyDialogFragmentListener {
-                override fun onConfirm(dialog: Dialog) {
-                    super.onConfirm(dialog)
+                override fun onConfirm() {
+                    super.onConfirm()
                     Toast.makeText(applicationContext, "On Click OK", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
                 }
 
-                override fun onCancel(dialog: Dialog) {
-                    super.onCancel(dialog)
+                override fun onCancel() {
+                    super.onCancel()
                     Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
                 }
 
             }, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))

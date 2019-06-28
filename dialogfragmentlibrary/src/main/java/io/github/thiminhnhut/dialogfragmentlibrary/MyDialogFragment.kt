@@ -9,8 +9,8 @@ import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
 class MyDialogFragment : DialogFragment() {
 
     interface MyDialogFragmentListener {
-        fun onConfirm(dialog: Dialog) = Unit
-        fun onCancel(dialog: Dialog) = Unit
+        fun onConfirm() = Unit
+        fun onCancel() = Unit
     }
 
     private lateinit var listener: MyDialogFragmentListener
@@ -49,11 +49,13 @@ class MyDialogFragment : DialogFragment() {
         dialog.setCanceledOnTouchOutside(dialogModel.canceledOnTouchOutside)
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            listener.onConfirm(dialog)
+            dialog.dismiss()
+            listener.onConfirm()
         }
 
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener {
-            listener.onCancel(dialog)
+            dialog.dismiss()
+            listener.onCancel()
         }
 
         return dialog
