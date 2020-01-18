@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import io.github.thiminhnhut.dialogfragmentlibrary.model.LoadingAnimationModel
 import kotlinx.android.synthetic.main.loading_animation.*
 
@@ -44,6 +45,17 @@ class LoadingAnimation : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingAnimationModel?.also {
             spin_kit.setColor(ContextCompat.getColor(context!!, it.cRes))
+        }
+    }
+
+    fun open(fragmentActivity: FragmentActivity) {
+        close()
+        this.show(fragmentActivity.supportFragmentManager, null)
+    }
+
+    fun close() {
+        if (this.isResumed && !this.isDetached) {
+            this.dismiss()
         }
     }
 }

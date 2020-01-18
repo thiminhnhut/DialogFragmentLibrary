@@ -21,37 +21,43 @@ class MainActivity : AppCompatActivity() {
 
         myDialogFragment =
             MyDialogFragment.newInstance(object : MyDialogFragment.MyDialogFragmentListener {
-                override fun onConfirm() {
-                    super.onConfirm()
+                override fun onCancelMessage(option: Any?) {
+                    super.onCancelMessage(option)
+                    Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
+
+                }
+
+                override fun onConfirmMessage(option: Any?) {
+                    super.onConfirmMessage(option)
                     Toast.makeText(applicationContext, "On Click OK", Toast.LENGTH_SHORT).show()
                 }
-
-                override fun onCancel() {
-                    super.onCancel()
-                    Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
-                }
-
             }, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))
 
         customDialogFragment =
-            CustomDialogFragment.newInstance(object : CustomDialogFragment.MyDialogFragmentListener {
-                override fun onConfirm(dialog: Dialog, view: View) {
-                    val edtName = view.findViewById<EditText>(R.id.edtName)
-                    Toast.makeText(applicationContext, "${edtName.text}", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
-                }
+            CustomDialogFragment.newInstance(
+                object : CustomDialogFragment.MyDialogFragmentListener {
+                    override fun onConfirm(dialog: Dialog, view: View) {
+                        val edtName = view.findViewById<EditText>(R.id.edtName)
+                        Toast.makeText(applicationContext, "${edtName.text}", Toast.LENGTH_SHORT)
+                            .show()
+                        dialog.dismiss()
+                    }
 
-                override fun onCancel(dialog: Dialog, view: View) {
-                    Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss()
-                }
-            }, R.layout.custom_dialog, DialogModel("Dialog Title", "This is a Dialog", "OK", null, false))
+                    override fun onCancel(dialog: Dialog, view: View) {
+                        Toast.makeText(applicationContext, "On Click Cancel", Toast.LENGTH_SHORT)
+                            .show()
+                        dialog.dismiss()
+                    }
+                },
+                R.layout.custom_dialog,
+                DialogModel("Dialog Title", "This is a Dialog", "OK", null, false)
+            )
 
 
         loadingAnimation = LoadingAnimation.newInstance()
 
         btnShow.setOnClickListener {
-                        myDialogFragment.show(supportFragmentManager, null)
+            myDialogFragment.show(supportFragmentManager, null)
 //            customDialogFragment.show(supportFragmentManager, null)
 //            loadingAnimation.show(supportFragmentManager, null)
         }
