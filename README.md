@@ -1,67 +1,39 @@
 # Dialog Fragment Library for Android
 
-* **Thực hiện:** Thi Minh Nhựt - **Email:** <thiminhnhut@gmail.com> - **Github:** <https://github.com/thiminhnhut>
+- **Thực hiện:** Thi Minh Nhựt - **Email:** <thiminhnhut@gmail.com> - **Github:** <https://github.com/thiminhnhut>
 
-* **Thời gian:** Ngày 16 tháng 05 năm 2019
+- **Thời gian:** Ngày 16 tháng 05 năm 2019
 
-* **Source:** <https://github.com/thiminhnhut/DialogFragmentLibrary>
+- **Source:** <https://github.com/thiminhnhut/DialogFragmentLibrary>
 
 ## Nguồn tham khảo
 
-* <https://codinginflow.com/tutorials/android/simple-alertdialog>
+- <https://codinginflow.com/tutorials/android/simple-alertdialog>
 
-* <https://codinginflow.com/tutorials/android/alertdialog-interface>
+- <https://codinginflow.com/tutorials/android/alertdialog-interface>
 
-* <https://codinginflow.com/tutorials/android/custom-dialog-interface>
+- <https://codinginflow.com/tutorials/android/custom-dialog-interface>
 
 ## Nội dung
 
-### Thêm thư viện vào project
+## Add Library to Android Project
 
-* Chép folder `DialogFragmentLibrary/dialogfragmentlibrary` vào project.
+- Trong `settings.gradle`:
 
-* Thêm thư viện `dialogfragmentlibrary` vào project:
+  ```gradle
+  include ':dialogfragmentlibrary'
+  project(':dialogfragmentlibrary').projectDir = new File('DialogFragmentLibrary/dialogfragmentlibrary')
+  ```
 
-  * File `build.gradle (Modele: app)`:
+  - Trong `build.gradle (app)`:
 
-    ```Groovy
-    dependencies {
-      implementation project(':dialogfragmentlibrary')
-    }
-    ```
-  
-  * File `settings.gradle (Project Settings)`
-
-    ```Groovy
-    include ':app', ':dialogfragmentlibrary'
-    ```
-
-  * Có thể cần tùy chỉnh lại `SdkVersion` trong file `build.gradle (Module: dialogfragmentlibrary)` cho phù hợp với `SdkVersion` của ``app``:
-
-    ```Groovy
-    android {
-      compileSdkVersion 28
-
-
-      defaultConfig {
-          minSdkVersion 21
-          targetSdkVersion 28
-          versionCode 1
-          versionName "1.0"
-      }
-
-      buildTypes {
-          release {
-              minifyEnabled false
-              proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-          }
-      }
-    }
-    ```
+  ```gradle
+  implementation project(path: ':dialogfragmentlibrary')
+  ```
 
 ### Sử dụng thư viện
 
-* Khai báo:
+- Khai báo:
 
   ```kotlin
   //Default Dialog Fragment
@@ -103,13 +75,13 @@
     customDialogFragment.show(supportFragmentManager, null)
   ```
 
-* Tùy chỉnh ẩn hoặc hiện `BUTTON_NEGATIVE` thông qua biến `cancel` trong `DialogModel`:
+- Tùy chỉnh ẩn hoặc hiện `BUTTON_NEGATIVE` thông qua biến `cancel` trong `DialogModel`:
 
-  * `cancel = null`: ẩn nút `BUTTON_NEGATIVE`.
+  - `cancel = null`: ẩn nút `BUTTON_NEGATIVE`.
 
-  * `cancel != null`: hiện nút `BUTTON_NEGATIVE`.
+  - `cancel != null`: hiện nút `BUTTON_NEGATIVE`.
 
-* Thay đổi một số thuộc tính trong dialog fragment thông qua `DialogModel`:
+- Thay đổi một số thuộc tính trong dialog fragment thông qua `DialogModel`:
 
   ```kotlin
   data class DialogModel(
@@ -121,9 +93,9 @@
   )
   ```
 
-* Tự quản lý dimiss dialog thông qua: `dialog.dismiss()` trong `interface MyDialogFragmentListener` (do đã override dialog button).
+- Tự quản lý dimiss dialog thông qua: `dialog.dismiss()` trong `interface MyDialogFragmentListener` (do đã override dialog button).
 
-* Interface trong `MyDialogFragment`:
+- Interface trong `MyDialogFragment`:
 
   ```kotlin
   interface MyDialogFragmentListener {
@@ -132,9 +104,9 @@
   }
   ```
 
-  * `dismiss()` thông qua biến `dialog`: `dialog.dismiss()`.
+  - `dismiss()` thông qua biến `dialog`: `dialog.dismiss()`.
 
-* Interface trong `CustomDialogFragment`:
+- Interface trong `CustomDialogFragment`:
 
   ```kotlin
   interface MyDialogFragmentListener {
@@ -143,10 +115,10 @@
   }
   ```
 
-  * `dismiss()` thông qua biến `dialog`: `dialog.dismiss()`.
+  - `dismiss()` thông qua biến `dialog`: `dialog.dismiss()`.
 
-  * Lấy dữ liệu và bắt sự kiện trong `custom view` thông qua biến `view` (ví dụ: `val edtName = view.findViewById<EditText>(R.id.edtName)`).
+  - Lấy dữ liệu và bắt sự kiện trong `custom view` thông qua biến `view` (ví dụ: `val edtName = view.findViewById<EditText>(R.id.edtName)`).
 
 ### TODO
 
-* Bổ sung thêm một số tùy chỉnh linh hoạt hơn cho Dialog Fragment.
+- Bổ sung thêm một số tùy chỉnh linh hoạt hơn cho Dialog Fragment.
