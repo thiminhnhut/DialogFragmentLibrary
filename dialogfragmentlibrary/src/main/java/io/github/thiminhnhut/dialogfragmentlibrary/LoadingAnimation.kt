@@ -23,6 +23,8 @@ class LoadingAnimation : DialogFragment() {
         }
     }
 
+    private var isOpen = false
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -49,13 +51,17 @@ class LoadingAnimation : DialogFragment() {
     }
 
     fun open(fragmentActivity: FragmentActivity) {
-        close()
-        this.show(fragmentActivity.supportFragmentManager, null)
+        if (!isOpen) {
+            close()
+            this.show(fragmentActivity.supportFragmentManager, null)
+        }
+        isOpen = true
     }
 
     fun close() {
-        if (this.isResumed && !this.isDetached) {
+        if (isOpen) {
             this.dismiss()
         }
+        isOpen = false
     }
 }
