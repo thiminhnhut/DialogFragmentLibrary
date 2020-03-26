@@ -1,6 +1,7 @@
 package io.github.thiminhnhut.dialogfragmentlibrary
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +17,15 @@ class LoadingAnimation : DialogFragment() {
 
     companion object {
         private var loadingAnimationModel: LoadingAnimationModel? = null
+        private var fragmentActivity: FragmentActivity? = null
 
         fun newInstance(loadingAnimationModel: LoadingAnimationModel? = null): LoadingAnimation {
             this.loadingAnimationModel = loadingAnimationModel
+            return LoadingAnimation()
+        }
+
+        fun newInstance(fragmentActivity: FragmentActivity): LoadingAnimation {
+            this.fragmentActivity = fragmentActivity
             return LoadingAnimation()
         }
     }
@@ -35,11 +42,9 @@ class LoadingAnimation : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         if (loadingAnimationModel == null) {
             loadingAnimationModel = LoadingAnimationModel(R.color.colorLoadingAnimation)
         }
-
         return inflater.inflate(R.layout.loading_animation, container, false)
     }
 
@@ -63,5 +68,13 @@ class LoadingAnimation : DialogFragment() {
             this.dismiss()
         }
         isOpen = false
+    }
+
+    fun open() {
+        if (!isOpen) {
+            close()
+            this.show(fragmentActivity!!.supportFragmentManager, null)
+        }
+        isOpen = true
     }
 }
