@@ -1,0 +1,23 @@
+{
+    "files.exclude": {
+        "dialogfragmentlibrary/build": true,
+        "app/build": true,
+        "**/*.iml": true,
+        "**/.gradle": true,
+        "local.properties": true,
+        ".idea/caches": true,
+        ".idea/libraries": true,
+        ".idea/modules.xml": true,
+        ".idea/workspace.xml": true,
+        ".idea/navEditor.xml": true,
+        ".idea/assetWizardSettings.xml": true,
+        "**/.DS_Store": true,
+        "build": true,
+        "captures": true,
+        "**/.externalNativeBuild": true,
+        "**/.cxx": true,
+        "**/.idea": true,
+        "**/.settings/": true,
+        "**/.project": true
+    }
+}
