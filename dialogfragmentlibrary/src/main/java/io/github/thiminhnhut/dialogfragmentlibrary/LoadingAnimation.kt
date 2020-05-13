@@ -1,7 +1,6 @@
 package io.github.thiminhnhut.dialogfragmentlibrary
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,22 +33,33 @@ class LoadingAnimation : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
-        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         dialog.window!!.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCanceledOnTouchOutside(false)
         return dialog
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (loadingAnimationModel == null) {
-            loadingAnimationModel = LoadingAnimationModel(R.color.colorLoadingAnimation)
+            loadingAnimationModel = LoadingAnimationModel(R.color.colorLoadingAnimation, null)
         }
         return inflater.inflate(R.layout.loading_animation, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        textView.text = loadingAnimationModel?.text
+        textView.setTextColor(ContextCompat.getColor(context!!, R.color.colorLoadingAnimation))
+
         loadingAnimationModel?.also {
             spin_kit.setColor(ContextCompat.getColor(context!!, it.cRes))
         }

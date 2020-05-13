@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.github.thiminhnhut.dialogfragmentlibrary.model.DialogModel
+import io.github.thiminhnhut.dialogfragmentlibrary.model.LoadingAnimationModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -54,12 +55,12 @@ class MainActivity : AppCompatActivity() {
             )
 
 
-        loadingAnimation = LoadingAnimation.newInstance()
+        loadingAnimation = LoadingAnimation.newInstance(LoadingAnimationModel(R.color.colorLoadingAnimation, "Processing"))
 
         btnShow.setOnClickListener {
-            myDialogFragment.show(supportFragmentManager, null)
+//            myDialogFragment.show(supportFragmentManager, null)
 //            customDialogFragment.show(supportFragmentManager, null)
-//            loadingAnimation.show(supportFragmentManager, null)
+            loadingAnimation.show(supportFragmentManager, null)
         }
     }
 }
