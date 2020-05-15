@@ -18,12 +18,11 @@ class LoadingAnimation : DialogFragment() {
         private var loadingAnimationModel: LoadingAnimationModel? = null
         private var fragmentActivity: FragmentActivity? = null
 
-        fun newInstance(loadingAnimationModel: LoadingAnimationModel? = null): LoadingAnimation {
+        fun newInstance(
+            fragmentActivity: FragmentActivity,
+            loadingAnimationModel: LoadingAnimationModel? = null
+        ): LoadingAnimation {
             this.loadingAnimationModel = loadingAnimationModel
-            return LoadingAnimation()
-        }
-
-        fun newInstance(fragmentActivity: FragmentActivity): LoadingAnimation {
             this.fragmentActivity = fragmentActivity
             return LoadingAnimation()
         }
